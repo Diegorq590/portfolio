@@ -252,7 +252,7 @@ section {
 
 .profile-pic {
   width: 75%;       /* or 25% */
-  max-width: 300px;
+  max-width: 350px;
   border-radius: 30%;
   overflow: hidden;
 }
