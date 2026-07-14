@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Diego Rico – Mechanical Engineering Portfolio">
+  <title>Diego Rico · Portfolio</title>
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="site-nav">
+      <div class="site-nav__brand">Diego · Portfolio</div>
+
+      <!-- <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        🌗
+      </button> -->
+
+      <ul class="site-nav__links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO (IMAGE BACKGROUND) -->
+    <section class="hero hero-video">
+      <img src="images/brake_caliper_backdrop.png" alt="Portfolio backdrop" class="hero-video__media">
+
+      <div class="hero-video__overlay">
+        <h1 class="hero-title">Welcome to My Portfolio</h1>
+        <p class="hero-subtitle">Diego Rico</p>
+
+        <!-- <a href="#projects" class="btn-primary" style="text-decoration:none;">
+          View My Projects
+        </a> -->
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+
+      <div class="about-content">
+        <div class="profile-pic">
+          <img src="images/avatar.jpg" alt="Profile Picture">
+        </div>
+
+        <div class="bio">
+          <p>
+            Hi, I'm Diego Rico, a Mechanical Engineering student at Northwestern University.
+            I have experience in 3D modelling, rapid prototyping, and design for manufacturing.
+            I am interested in clean energy and mobility. Currently looking for a summer 2027 internship in these fields.
+          </p>
+          <p>
+            I have a passion for the outdoors, am a scuba diver, enjoy playing guitar and doing photography.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">My Projects</h2>
+
+      <div class="projects-grid">
+
+        <article class="card">
+          <img src="images/dice_in_box_cover.png" alt="Dice in Box Simulation">
+          <h3>Die in a Box Mechanics Simulation</h3>
+          <p>Full rigid-body simulation with discontinuous contact dynamics.</p>
+          <a href="project1.html">View Project</a>
+        </article>
+
+        <article class="card">
+          <img src="images/project2/project2_cover.png" alt="Earbuds CAD">
+          <h3>JBL TuneFlex Surface Modeling</h3>
+          <p>SolidWorks CAD of my earbuds</p>
+          <a href="project2.html">View Project</a>
+        </article>
+
+        <article class="card">
+          <img src="images/brake_caliper/final_FEA.png" alt="Brake Caliper Mechanical Design">
+          <h3>Bicycle Rear Brake Caliper Design</h3>
+          <p>Mechanical design, validation and testing of a bycicle rear brake caliper</p>
+          <a href="brake_caliper.html">View Project</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+     <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-form">
+        <!-- SVG illustration -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 563" fill="none">
+          <!-- (SVG content truncated for brevity; keep your full original here) -->
+        </svg>
+
+        <!-- Contact form -->
+        <form>
+          <h3 class="title">Let’s talk about mechanics &amp; simulation</h3>
+
+          <div class="form-group">
+            <span class="icon">👤</span>
+            <input class="form-control" type="text" name="name" placeholder="Your name">
+          </div>
+
+          <div class="form-group">
+            <span class="icon">📧</span>
+            <input class="form-control" type="email" name="email" placeholder="Your email">
+          </div>
+
+          <div class="form-group">
+            <span class="icon">💬</span>
+            <textarea class="form-control" name="message" rows="4"
+                      placeholder="Tell me about the project or idea"></textarea>
+          </div>
+
+          <button class="btn-primary" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+    
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; <span id="year"></span> Diego · CAD & Surface Modeling Portfolio</p>
+  </footer>
+
+  <!-- Theme toggle + year -->
+  <script>
+    const root = document.documentElement;
+    const toggle = document.querySelector('.theme-toggle');
+    toggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'light';
+      root.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

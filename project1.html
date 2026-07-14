@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Classic portfolio case study for a mechanics simulation project">
+  <title>Die in Box Mechanics Simulation</title>
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- MathJax v3 (tex + svg) -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\
+
+\[', '\\]
+
+']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav">
+      <div class="site-nav__brand">Diego · Mechanics Portfolio</div>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        🌗
+      </button>
+      <ul class="site-nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html #projects">Projects</a></li>
+        <li><a href="index.html #contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO VIDEO -->
+    <section class="hero hero-video" id="top">
+      <video class="hero-video__media" autoplay loop muted playsinline>
+        <source src="images/project1/Dice_in_box_2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="hero-video__overlay">
+        <h1 class="hero-title">Die in Box Mechanics Simulation</h1>
+        <p class="hero-subtitle">
+          Three-DOF rigid body system with discontinuous contact dynamics.
+        </p>
+
+        <div class="tech-badges">
+          <span class="badge badge-python">Python (SymPy, NumPy, SciPy)</span>
+          <span class="badge badge-mech">Lagrangian Mechanics</span>
+          <span class="badge badge-se3">SE(3) Matrix Transformations</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDY / PROJECT -->
+    <section id="projects">
+      <article class="case-study">
+        <!-- OVERVIEW -->
+        <section class="case-section" id="overview">
+          <h3>Project Overview</h3>
+          <p>
+            This mechanics project simulates a three-degree-of-freedom rigid body
+            system featuring discontinuous contact dynamics: a square die
+            bouncing freely inside a larger, falling square box under the
+            influence of gravity.
+          </p>
+        </section>
+
+        <!-- KINEMATICS -->
+        <section class="case-section" id="kinematics">
+          <h3>Kinematic Architecture &amp; Coordinate Frames</h3>
+          <p>The system is mapped using six generalized configuration coordinates:</p>
+          <p class="inline-math-strong">
+            q = [ x₁ , y₁ , θ₁ , x₂ , y₂ , θ₂ ]ᵀ
+          </p>
+          <p>
+            Where (x₁, y₁, θ₁) tracks the absolute world position and orientation
+            of the outer box center of mass (COM), and (x₂, y₂, θ₂) maps the
+            absolute path and rotation of the internal die COM.
+          </p>
+
+          <div class="figure-placeholder">
+            <img src="images/project1/Coord_frames.png" alt="Coordinate Frames">
+          </div>
+
+          <h4>Rigid Body Matrix Transformations</h4>
+          <p>
+            Homogeneous SE(3) matrix representations transform positions between
+            body frames and the fixed environment:
+          </p>
+          <ul class="bullet-list">
+            <li>
+              <strong>Box COM {A} to World frame {w}:</strong>
+              g<sub>wA</sub> matrix defined via coordinates (x₁, y₁, θ₁).
+            </li>
+            <li>
+              <strong>Die COM {F} to World frame {w}:</strong>
+              g<sub>wF</sub> matrix defined via coordinates (x₂, y₂, θ₂).
+            </li>
+            <li>
+              <strong>Relative Boundary Formulations:</strong>
+              Box corners B, C, D, E relative to frame {A} and die corners
+              G, H, I, J relative to frame {F} are resolved via fixed parameter
+              dimensions (L, l).
+            </li>
+          </ul>
+          <p>
+            The helper function <code>SE3</code> returns the matrix transformations
+            used for this project.
+          </p>
+
+          <pre><code class="language-python">
+def SE3(angle, vector=False):
+    matrix = sym.eye(3, 3)
+    matrix[0, :] = sym.Matrix([sym.cos(angle), -sym.sin(angle), 0]).T
+    matrix[1, :] = sym.Matrix([sym.sin(angle),  sym.cos(angle), 0]).T
+    if vector:
+        vector = sym.Matrix(vector)
+        matrix[:2, 2] = vector
+    return sym.simplify(matrix)
+          </code></pre>
+        </section>
+
+        <!-- MATH FORMULATION -->
+        <section class="case-section" id="math">
+          <h3>Mathematical Formulation</h3>
+
+          <h4>1. The Euler–Lagrange Equations</h4>
+          <p>
+            Body velocities were mapped by transforming the time derivative of
+            the configuration frames into the body-fixed velocity twist vector
+            V = (g⁻¹ · ġ)<sup>∨</sup>. The system Lagrangian
+            (ℒ = T − V) was formulated by combining kinetic energy profiles
+            (T = ½ Vᵀ M V) and gravitational potentials (V = mgy).
+          </p>
+
+          <div class="math-block">
+            <p class="math-block__title">
+              System Lagrangian (<i>ℒ</i>):
+            </p>
+            <!-- kept as HTML math; could be converted to MathJax later -->
+            <p>
+              ℒ = −98.0y<sub>1</sub>(t) − 9.8y<sub>2</sub>(t)
+              + 3.375 (dθ<sub>1</sub>(t)/dt)<sup>2</sup>
+              + 0.041667 (dθ<sub>2</sub>(t)/dt)<sup>2</sup><br><br>
+              + 5.0 (dx<sub>1</sub>(t)/dt)<sup>2</sup>
+              + 0.5 (dx<sub>2</sub>(t)/dt)<sup>2</sup>
+              + 5.0 (dy<sub>1</sub>(t)/dt)<sup>2</sup>
+              + 0.5 (dy<sub>2</sub>(t)/dt)<sup>2</sup>
+            </p>
+          </div>
+
+          <p>
+            Using symbolic partial derivatives in <code>sympy</code>, the continuous
+            unconstrained equations of motion were solved simultaneously for
+            generalized acceleration (q̈) and parsed via
+            <code>sym.lambdify</code> into a fast numerical solver loop.
+          </p>
+
+          <pre><code class="language-python">
+EL = []
+for i in range(len(q)):
+    dl_dq = sym.diff(lg, q[i])
+    dl_dqdot = sym.diff(lg, qdot[i])
+    dl_dqdot_dt = sym.diff(dl_dqdot, t)
+    EL.append(dl_dq - dl_dqdot_dt)
+          </code></pre>
+        </section>
+
+        <!-- CONSTRAINTS -->
+        <section class="case-section" id="constraints">
+          <h4>2. Kinematic Boundary Constraints (Φ)</h4>
+          <p>The framework enforces two constraint boundaries:</p>
+          <ol class="numbered-list">
+            <li>
+              <strong>Box Grounding:</strong>
+              The outer box corners must remain above the floor (y<sub>world</sub> ≥ 0).
+            </li>
+            <li>
+              <strong>Die Containment:</strong>
+              The four vertices of the die must remain inside the perimeter of
+              the box, solved via the transform matrix chain
+              g<sub>AF</sub> = g<sub>wA</sub><sup>−1</sup> · g<sub>wF</sub>.
+            </li>
+          </ol>
+          <p>
+            The constraints are written such that when ϕ &gt; 0 bodies are
+            separated, ϕ = 0 contact occurs, and ϕ &lt; 0 penetration has occurred.
+          </p>
+
+          <pre><code class="language-python">
+## Constraints
+Ln = 3 #side lenght of box
+ln = 1 #side lenght of die
+
+g_AF = SE3(q[5] - q[2], [q[3] - q[0], q[4] - q[1]])
+
+posG = pos(g_AF, [-ln/2,  ln/2])  # Top-Left
+posH = pos(g_AF, [ ln/2,  ln/2])  # Top-Right
+posI = pos(g_AF, [-ln/2, -ln/2])  # Bottom-Left
+posJ = pos(g_AF, [ ln/2, -ln/2])  # Bottom-Right
+
+die_corners = [posG, posH, posI, posJ]
+phi_die_walls = []
+
+for posP in die_corners:
+    x_p = posP[0]
+    y_p = posP[1]
+    phi_die_walls.append(Ln/2 - x_p)  # Right wall gap
+    phi_die_walls.append(x_p + Ln/2)  # Left wall gap
+    phi_die_walls.append(Ln/2 - y_p)  # Top wall gap
+    phi_die_walls.append(y_p + Ln/2)  # Bottom wall gap
+
+box_corners = [posB, posC, posD, posE]
+
+phi_box_ground = []
+for posB_w in box_corners:
+    phi_box_ground.append(posB_w[1])
+
+phi_list = phi_die_walls + phi_box_ground
+          </code></pre>
+
+          <p class="inline-math-center">
+            J(q) = ∂ϕ(q) / ∂q
+          </p>
+          <p>
+            Multiplying the Jacobian by the generalized velocity vector gives
+            the normal velocity at the contact point:
+          </p>
+          <p class="inline-math-center">
+            ϕ˙ = J(q) · q˙.
+          </p>
+
+          <h4>3. Impact Update Laws</h4>
+          <p>
+            When any element inside the constraint vector drops below a numerical
+            tolerance threshold Φ<sub>i</sub>(q) &lt; 0, time integration is
+            temporarily suspended. The generalized velocities immediately before
+            impact q˙⁻ are substituted by a new set of post-impact velocities q˙⁺.
+          </p>
+          <p>
+            The unknown post-impact state is obtained by solving the impulsive
+            momentum balance together with the energy conservation equation:
+          </p>
+          <p class="inline-math-strong">
+            p⁺ − p⁻ = λ · J<sub>active</sub><sup>T</sup> &nbsp;&nbsp;|&nbsp;&nbsp;
+            ℰ⁺ − ℰ⁻ = 0
+          </p>
+          <p>
+            Where p is system momentum, λ is the impact impulse magnitude, and ℰ
+            is total mechanical energy. This algebraic system is evaluated via
+            <code>scipy.optimize.root</code> to resolve the post-impact velocity
+            profile (q̇⁺).
+          </p>
+        </section>
+
+        <!-- ANALYSIS -->
+        <section class="case-section" id="analysis">
+          <h3>Simulation Analysis &amp; Verification</h3>
+          <p>
+            <strong>Physical Model Behavior:</strong> Between impact events, both
+            rigid bodies display parabolic paths of their y-components (y₁ and y₂),
+            as expected for bodies under constant gravity. During wall impacts,
+            the die transfers momentum back into the outer box structure, causing
+            it to rotate and slide in response, consistent with Newton’s third law.
+          </p>
+
+          <div class="figure-placeholder">
+            <img src="images/project1/Simulation.png" alt="Simulation">
+          </div>
+
+          <p>
+            The Hamiltonian of the system is conserved. The following plot shows
+            that the relative energy error was less than 1 percent. A conserved
+            Hamiltonian is expected given that this is a closed system (collisions
+            are assumed perfectly elastic).
+          </p>
+
+          <div class="figure-placeholder">
+            <img src="images/project1/Hamiltonian.png" alt="Hamiltonian">
+          </div>
+        </section>
+      </article>
+
+      <!-- Example projects grid (for future projects) -->
+      <!--<div class="projects-grid">
+        <article class="card">
+          <img src="images/project-placeholder-1.png" alt="Project placeholder">
+          <h3>Rigid Body Simulation Toolkit</h3>
+          <p>Reusable Python pipeline for SE(3) kinematics and energy verification.</p>
+          <a href="#">View details</a>
+        </article>
+        <article class="card">
+          <img src="images/project-placeholder-2.png" alt="Project placeholder">
+          <h3>Contact Dynamics Sandbox</h3>
+          <p>Interactive environment for testing impact laws and constraint Jacobians.</p>
+          <a href="#">View details</a>
+        </article>
+      </div>-->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Diego · Mechanics &amp; Simulation Portfolio</p>
+  </footer>
+
+  <!-- Theme toggle + year -->
+  <script>
+    const root = document.documentElement;
+    const toggle = document.querySelector('.theme-toggle');
+    toggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'light';
+      root.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

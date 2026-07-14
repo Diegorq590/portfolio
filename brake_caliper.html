@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bicycle Caliper Brake Design · Diego Rico</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="site-nav">
+      <div class="site-nav__brand">Diego · Portfolio</div>
+
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        🌗
+      </button>
+
+      <ul class="site-nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html #projects">Projects</a></li>
+        <li><a href="index.html #contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero hero-video">
+      <img src="images/brake_caliper/final_FEA.png" class="hero-video__media">
+
+      <div class="hero-video__overlay">
+        <h1 class="hero-title">Rear Bicycle Caliper Brake</h1>
+        <p class="hero-subtitle">CAD · FEA · SLS Manufacturing · ISO 4210 Compliance</p>
+
+        <div class="tech-badges">
+          <span class="badge badge-nx">Siemens NX</span>
+          <span class="badge badge-fea">FEA</span>
+          <span class="badge badge-python">Topology Optimization</span>
+          <span class="badge badge-mech">Additive Manufacturing</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="case-study">
+      <div class="case-section">
+        <h3>Project Overview</h3>
+        <p>
+          As part of ME 240: Introduction to Design and Manufacturing, I led the CAD and 
+          manufacturing development of a fully functional rear caliper brake designed to meet 
+          ISO 4210 performance standards. My work focused on geometric design, structural 
+          refinement, tolerance planning, and simulation-driven iteration.
+        </p>
+      </div>
+
+      <div class="case-section">
+        <h4>My Role</h4>
+        <ul class="bullet-list">
+          <li>Designed and iterated full caliper geometry in Siemens NX</li>
+          <li>Prepared parts for SLS Nylon manufacturing</li>
+          <li>Performed FEA setup, meshing, load cases, and stress interpretation</li>
+          <li>Implemented topology optimization insights into final geometry</li>
+          <li>Led redesign after initial testing failures</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CAD DEVELOPMENT -->
+    <section id="cad" class="case-study">
+
+      <div class="case-section">
+        <h3>Initial CAD Geometry</h3>
+        <p>
+          The first iteration focused on meeting spatial constraints like rim clearance, rim and cable 
+          alignment. Early geometry was intentionally simple to validate load paths and pivot 
+          placement.
+        </p>
+
+        <div class="figure-placeholder">
+            <img src="images/brake_caliper/v1_both.png">
+        </div>
+        <div class="figure-placeholder flex-row">
+          <img src="images/brake_caliper/v1_left.png">
+          <img src="images/brake_caliper/v1_right.png">
+        </div>
+        <p>We expected stress concentrations based on our hand calculations and given the geometry of the caliper and the applied forces. FEA was performed on the initial version to understand the stress distributions in the caliper.</p>
+      </div>
+
+      <div class="case-section">
+        <h3>FEA Setup</h3>
+        <p>
+          I modeled cable tension (200 N), friction force from the rim (140 N), and pad contact constraints using 
+          NX Nastran. A 1.5 mm tetrahedral mesh was used for accuracy, with a 2 mm fallback on the 
+          right caliper due to geometry complexity. There was a pinned constraint at the pivot hole.
+        </p>
+
+        <!-- <div class="figure-placeholder">
+          <img src="images/caliper/fea_setup.png">
+        </div> -->
+      </div>
+
+      <div class="case-section">
+        <h3>Initial FEA Results</h3>
+        <p>
+          The initial design exceeded the allowable tensile stress of Nylon 12 (50 MPa), reaching 
+          69.57 MPa with a factor of safety below 1.0.
+        </p>
+
+        <div class="figure-placeholder">
+          <img src="images/brake_caliper/v1_FEA.png">
+        </div>
+        <p>There were two main spots in the caliper that had stresses exceeding the maximum allowable stress: The inner sharp corner connecting the vertical and horizontal members of the caliper, and the pivot hole.</p>
+        <div class="figure-placeholder flex-row">
+          <img src="images/brake_caliper/v1_FEA2copy.png">
+          <img src="images/brake_caliper/reaction_forces.png">
+        </div>
+        <h3>Key improvements after initial FEA</h3>
+        <p>To reduce the accumulated stresses shows above I decided to:</p>
+        <ul class="bullet-list">
+          <li>Change sharp corner for rounded corner geometry to follow the stress path.</li>
+          <div class="figure-placeholder flex-row">
+            <img src="images/brake_caliper/curvy_fix_right.png">
+            <img src="images/brake_caliper/curvy_fix_left.png">
+        </div>
+          <li>Increase the surface area of the contact at pivot whole by adding extra material to the whole. The reasoning behind this was to add material to the contact region at the pivot hole, to distribute the reaction forces from the pinned constraint along a greater area, reducing local stress.</li>
+          <div class="figure-placeholder flex-row">
+            <img src="images/brake_caliper/bulb_left.png">
+            <img src="images/brake_caliper/bulb_right.png">
+        </div>
+        </ul>
+
+      </div>
+
+      <div class="case-section">
+        <h3>Second FEA Results</h3>
+        <p>
+          The redesigned calipers reduced peak stress to 39.5 MPa (right) and 35.9 MPa (left), 
+          achieving a system‑level factor of safety of 2.32 and cutting deflection nearly in half.
+          After validating that the calipers met the deformation and allowable stresses with this
+          round of FEA, the calipers were ready for topology optimization.
+        </p>
+    </section>
+
+    <!-- FEA ANALYSIS -->
+    <section id="fea" class="case-study">
+      </div>
+          <div class="case-section">
+        <h3>Topology Optimization Insights</h3>
+        <p>
+          Topology optimization highlighted low‑stress regions on the right caliper arm and 
+          suggested material removal patterns. I incorporated these results into a manufacturable 
+          organic geometry using blends and fillets.
+        </p>
+
+        <div class="figure-placeholder flex-row">
+          <img src="images/brake_caliper/Topology_opt1.png">
+          <img src="images/brake_caliper/Topology_opt2.png">
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>First Testing and Modifications</h3>
+        <p>
+          The optimized design was 3D printed and tested on a bike. The first round of testing showed:
+        </p>
+        <ul class="bullet-list">
+          <li>Excessive braking distance of 43 ft</li>
+          <li>Longer than desired installation time of 15 minutes</li>
+          <li>A calculated rim braking force of 23N</li>
+        </ul>
+        <p>
+        The pad misalignement was originated by a mistake in the initial wheel and frame dimensions 
+        used for the CAD model of the brake caliper. The caliper design matched the dimensions of the 
+        frame and wheel model, but the modeled itself differred from the actual geometry of the bike.
+        This mismatch made rest only partially on the rim, applying less braking force
+        on the rim, having a significant portion of the braking force being dispated through tire 
+        compression. The mismatch also made the brake calipers hard to mount.
+        </p>
+
+        <div class="figure-placeholder flex-row">
+          <img src="images/brake_caliper/testing1.png">
+          <img src="images/brake_caliper/testing2.png">
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTING -->
+    <section id="testing" class="case-study">
+
+      <div class="case-section">
+        <h3>Redesigning and Second Testing Results</h3>
+        <p>
+          Re-designing after the first testing involved, increasing the length of the brake caliper arms to match
+          bike geometry, and increasing the thickness of the arms to keep desired defelction values despite
+          greater bending moments. FEA was performed again on the modified brake calipers to validate the its strength
+          and maximum allowable deformation.
+        </p>
+        <p>
+          After redesign, stopping distance decreased from 43 feet to 29.8 feet, and the calculated rim braking force increased 
+          from 23 N to 200.1 N. Assembly time dropped from 15 minutes to 5.3 minutes.
+        </p>
+
+        <div class="figure-placeholder">
+          <img src="images/brake_caliper/final_FEA.png">
+        </div>
+      </div>
+      <p>
+          The final design meets ISO 4210 requirements, demonstrates manufacturable geometry, 
+          and achieves strong structural performance under realistic braking loads.
+      </p>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; <span id="year"></span> Diego · Mechanical Design Portfolio</p>
+  </footer>
+
+  <!-- Theme toggle + year -->
+  <script>
+    const root = document.documentElement;
+    const toggle = document.querySelector('.theme-toggle');
+    toggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'light';
+      root.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

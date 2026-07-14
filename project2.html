@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JBL TuneFlex Surface Modeling · Diego Rico</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="site-nav">
+      <div class="site-nav__brand">Diego · Portfolio</div>
+
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        🌗
+      </button>
+
+      <ul class="site-nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html #projects">Projects</a></li>
+        <li><a href="index.html #contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero hero-video">
+      <video class="hero-video__media" autoplay loop muted playsinline>
+        <source src="images/project2/JBL_Tune_flex_Hero2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-video__overlay">
+        <h1 class="hero-title">JBL TuneFlex Surface Modeling</h1>
+        <!-- <p class="hero-subtitle">Advanced SolidWorks · Organic Surface Workflow</p> -->
+
+        <div class="tech-badges">
+          <span class="badge badge-SolidWorks">SolidWorks</span>
+          <span class="badge badge-nx">Surface Modeling</span>
+          <span class="badge badge-cad">CAD</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="case-study">
+      <div class="case-section">
+        <h3>Project Overview</h3>
+        <p>
+          For my Advanced SolidWorks course at NU, I chose to model the <strong>JBL TuneFlex</strong> earbuds.
+          Their organic geometry — especially the rounded lobe and smooth transitions — made them
+          an ideal candidate for a surface‑modeling workflow. This project involved reference photography,
+          caliper measurements, surface creation, curvature control, and final feature integration.
+        </p>
+      </div>
+
+      <div class="case-section">
+        <h4>Initial Measurements & Photos</h4>
+        <p>
+          Before modeling, I captured isometric photos to use as sketch reference, and measured key dimensions using a caliper.
+          I identified two main features:
+        </p>
+
+        <ul class="bullet-list">
+          <li>The <strong>lobe</strong> (the rounded ear‑facing geometry)</li>
+          <li>The <strong>stem</strong> (the rest of the earbud geometry)</li>
+        </ul>
+
+        <div class="figure-placeholder flex-row">
+          <img src="images/project2/initial_measurements2.jpg">
+          <img src="images/project2/initial_measurements.jpg">
+        </div>
+      </div>
+    </section>
+
+    <!-- CAD PROCESS -->
+    <section id="cad" class="case-study">
+
+      <!-- Base Feature -->
+      <div class="case-section">
+        <h3>Base Feature — Stem Geometry</h3>
+        <p>
+          I began with a simple extruded stadium profile — a rectangle with rounded ends. This served
+          as the foundation for the stem and provided reference geometry for the lobe.
+        </p>
+
+        <div class="figure-placeholder">
+            <img src="images/project2/base_feature1.png" alt="Base Feature">
+        </div>
+      </div>
+
+      <!-- Reference Geometry -->
+      <div class="case-section">
+        <h3>Reference Geometry for the Lobe</h3>
+        <p>
+          Using the stem as a base, I created planes and sketches to define the lobe’s cross‑sections.
+          These sketches were aligned with the reference photos to ensure accurate curvature.
+        </p>
+
+        <div class="figure-placeholder flex-row">
+          <img src="images/project2/guide_lines.png" alt="Guide Lines">
+          <img src="images/project2/guide_lines3.png" alt="Guide Lines">        
+        </div>
+      </div>
+
+      <!-- Surface Modeling -->
+      <div class="case-section">
+        <h3>Surface Modeling the Lobe</h3>
+        <p>
+          The lobe’s geometry is highly organic, with almost no sharp edges. This made it ideal for
+          surface modeling. I used boundary surfaces and curvature‑continuous transitions to sculpt
+          the outer shell.
+        </p>
+
+        <div class="figure-placeholder">
+            <img src="images/project2/lobe.png">
+        </div>
+      </div>
+
+      <!-- Joining -->
+      <div class="case-section">
+        <h3>Joining Lobe and Stem</h3>
+        <p>
+          This was the most challenging part of the project. I used image‑based sketches, multiple
+          reference planes, and curvature‑to‑face constraints to achieve a smooth, manufacturable
+          transition between the two components.
+        </p>
+        <p>
+          At this point, I also converted the stem into a surface
+          using <em>Delete Face</em>. This allowed me to ensure a smooth transition between the stem and lobe and to knit both bodies together seamlessly.
+        </p>
+        <div class="figure-placeholder flex-row">
+            <img src="images/project2/join_lobe_stem.png" alt="Join Lobe and Stem">
+            <img src="images/project2/join_lobe_stem2.png" alt="Join Lobe and Stem">
+        </div>
+      </div>
+
+      <!-- Filleting -->
+      <div class="case-section">
+        <h3>Filleting & Final Surface Knit</h3>
+        <p>
+          After knitting the surfaces, I added fillets to the stem and the junction between the lobe
+          and stem. These fillets ensured a realistic and ergonomic final shape.
+        </p>
+
+        <div class="figure-placeholder">
+            <img src="images/project2/filleting3.png">
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL RESULT -->
+    <section id="result" class="case-study">
+      <div class="case-section">
+        <h3>Final Result</h3>
+        <p>
+          The final model captures the smooth, organic geometry of the JBL TuneFlex earbuds. This
+          project strengthened my understanding of surface modeling, curvature continuity, and
+          multi‑plane reference workflows.
+        </p>
+        <div class="figure-placeholder">
+          <img src="images/project2/project2_cover.png">
+        </div>
+        <div class="figure-placeholder flex-row">
+            <img src="images/project2/final_results5.png">
+            <img src="images/project2/final_results2.png">
+        </div>
+
+        <!-- <a href="Modeling JBL TuneFlex.pdf" class="btn-primary" style="text-decoration:none;">
+          Download Full Slideshow
+        </a> -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; <span id="year"></span> Diego · CAD & Surface Modeling Portfolio</p>
+  </footer>
+
+  <!-- Theme toggle + year -->
+  <script>
+    const root = document.documentElement;
+    const toggle = document.querySelector('.theme-toggle');
+    toggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'light';
+      root.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
