@@ -189,6 +189,11 @@ section {
   margin-bottom: var(--space-md);
   color: #5c5c5c;
 }
+.hero-subtitle2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-md);
+  color: #5c5c5c;
+}
 
 /* Tech badges */
 .tech-badges {
