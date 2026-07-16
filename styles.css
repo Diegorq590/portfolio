@@ -338,14 +338,14 @@ section {
 
 .figure-placeholder.flex-row img {
   flex: 1 1 auto;
-  max-width: 350px;
+  max-width: 45%;
   height: auto;
   border-radius: var(--radius-sm);
   object-fit: contain;
 }
 
 /* 📱 On phone-sized screens, allow wrapping */
-@media (max-width: 1000px) {
+@media (max-width: 80%) {
   .figure-placeholder.flex-row {
     flex-wrap: wrap;              /* now images can stack */
   }
