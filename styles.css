@@ -288,7 +288,7 @@ section {
   }
 
   .hero-video__media {
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .hero-video__overlay {
