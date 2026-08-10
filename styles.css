@@ -277,11 +277,31 @@ section {
 .hero-subtitle {
   color: rgba(255,255,255,0.8);
 }
+/* =========================================================
+   Mobile Hero
+   ========================================================= */
 @media (max-width: 600px) {
   .hero-video {
     height: auto;
     min-height: 0;
     aspect-ratio: 16 / 9;
+  }
+
+  .hero-video__media {
+    object-fit: cover;
+  }
+
+  .hero-video__overlay {
+    padding: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-subtitle2 {
+    margin-top: 0.5rem;
+    font-size: 1rem;
   }
 }
 
