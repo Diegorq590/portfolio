@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case study: machining a custom bolt‑action pen from raw stock">
+  <title>Bolt-Action Pen Machining</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="site-nav">
+      <div class="site-nav__brand">Diego · Mechanics Portfolio</div>
+      <ul class="site-nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <!-- <section class="hero hero-video" id="top">
+      <img src="images/pen/pen_parts2.jpg" class="hero-video__media">
+      <div class="hero-video__overlay">
+        <h1 class="hero-title">Bolt-Action Pen Machining</h1>
+        <p class="hero-subtitle">Machining an original bolt‑action pen design from raw stock.</p>
+
+        <div class="tech-badges">
+          <span class="badge badge-python">Machining</span>
+          <span class="badge badge-mech">DfM</span>
+          <span class="badge badge-mech">Lathe</span>
+          <span class="badge badge-se3">Mill</span>
+        </div>
+      </div>
+    </section> -->
+    <section class="hero hero-video">
+      <video class="hero-video__media" autoplay loop muted playsinline>
+        <source src="images/pen/final_video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-video__overlay">
+        <h1 class="hero-title">JBL TuneFlex Surface Modeling</h1>
+        <!-- <p class="hero-subtitle">Advanced SolidWorks · Organic Surface Workflow</p> -->
+
+        <div class="tech-badges">
+          <span class="badge badge-SolidWorks">SolidWorks</span>
+          <span class="badge badge-nx">Surface Modeling</span>
+          <span class="badge badge-cad">CAD</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CASE STUDY -->
+    <article class="case-study">
+
+      <!-- INTRO -->
+      <section class="case-section">
+        <h2 class="section-title">Project Overview</h2>
+        <p>
+          At the end of the school year, I wanted to make a meaningful gift for a graduating friend.
+          Instead of buying a pen, I decided to design and machine a fully custom bolt‑action pen —
+          something durable, personal, and unlike anything you could find commercially.
+        </p>
+        <p>
+          I began by disassembling my preferred commercial pen, keeping only the ink cartridge and
+          spring. Everything else — the shell, the mechanism, the tolerances — would be designed and
+          machined from scratch.
+        </p>
+      </section>
+
+      <!-- DESIGN -->
+      <section class="case-section">
+        <h3>Design Process</h3>
+        <p>
+          After measuring the ink cartridge and spring in both compressed and extended positions,
+          I modeled the entire pen in SolidWorks. The design consists of three main components:
+        </p>
+
+        <ul class="bullet-list">
+          <li><strong>Tip / Handle</strong> — supports the spring and serves as the grip.</li>
+          <li><strong>Top Barrel</strong> — encloses the cartridge, houses the internal moving piece,
+              and provides the J‑slot that locks the bolt‑action mechanism.</li>
+          <li><strong>Internal Barrel</strong> — transmits user force and interfaces with the spring
+              to toggle between open and closed positions.</li>
+        </ul>
+
+        <div class="figure-placeholder flex-row">
+
+      </section>
+
+      <!-- MATERIALS -->
+      <section class="case-section">
+        <h3>Materials & Galling Considerations</h3>
+        <p>
+          Material selection was constrained by the stock available in my school’s shop:
+          303 stainless steel, 6062 aluminum, and occasional copper. Because the design includes a
+          sliding transition fit between the top barrel and internal barrel, I wanted these two
+          components to be made from different materials to reduce the risk of galling.
+        </p>
+
+        <div class="figure-placeholder">
+          <p>Close‑fit assembly photo</p>
+          <img src="images/pen/close_fit.jpg" alt="Close fit between components">
+        </div>
+
+        <h4>Initial Approach</h4>
+        <p>
+          My first plan was to machine the internal barrel (piece #3) from steel and the larger
+          components (pieces #1 and #2) from aluminum. The idea was to reserve the harder material
+          for the smallest part, where precision mattered most.
+        </p>
+
+        <h4>Threading Challenge</h4>
+        <p>
+          Piece #3 includes a small 4‑40 thread — the feature I expected to be most error‑prone.
+          I started machining this part first, but after breaking a carbide tap, I reconsidered the
+          material choices.
+        </p>
+
+        <div class="figure-placeholder">
+          <img src="images/pen/440_thread_detail.png" alt="4-40 thread machining">
+        </div>
+
+        <h4>Revised Material Strategy</h4>
+        <p>
+          I switched the materials: pieces #1 and #2 would be stainless steel, and piece #3 would be
+          aluminum. This reduced the risk of tap breakage and improved the sliding interface between
+          the internal and outer barrels.
+        </p>
+      </section>
+
+      <!-- MACHINING -->
+      <section class="case-section">
+        <h3>Machining Strategy</h3>
+        <p>
+          I machined the most failure‑prone features first, following the same logic as in the
+          threading step. This helped avoid wasting time on parts that might later fail during
+          critical operations.
+        </p>
+
+        <h4>Piece #1 — Tip / Handle</h4>
+        <ul class="bullet-list">
+          <li>7/16‑20 UNF machine threads</li>
+          <li>3/32 drilled hole</li>
+          <li>Internal bores</li>
+          <li>13° tapered turning</li>
+        </ul>
+
+        <div class="figure-placeholder flex-row">
+          <img src="images/pen/piece1.jpg" alt="Machining piece 1">
+          <img src="images/pen/taper.jpg" alt="Machining piece 1">
+          
+        </div>
+
+          <h4>Piece #2 — Top Barrel</h4>
+        <ul class="bullet-list">
+          <li>7/16‑20 UNF tapped threads</li>
+          <li>Internal bores</li>
+          <li>J‑slot milling</li>
+        </ul>
+
+        <div class="figure-placeholder">
+          <img src="images/pen/piece2.jpg" alt="Machining piece 2">
+        </div>
+
+        <div class="figure-placeholder flex-row">
+          <img src="images/pen/tap.jpg" alt="Machining piece 2">
+          <img src="images/pen/mill.jpg" alt="Machining piece 2">
+        </div>
+
+        <h4>Piece #3 — Internal Barrel</h4>
+        <ul class="bullet-list">
+          <li>4‑40 tapped hole (now in aluminum)</li>
+          <li>1/4 drilled hole</li>
+        </ul>
+
+        <div class="figure-placeholder">
+          <img src="images/pen/440_thread_detail2.jpg" alt="4-40 thread machining">
+        </div>
+
+        <p>
+          After completing the critical features, all parts were turned down to their final
+          diameters.
+        </p>
+      </section>
+
+      <!-- FINISHING -->
+      <section class="case-section">
+        <h3>Finishing</h3>
+        <p>
+          To achieve a smooth, consistent surface finish, I turned each part to roughly 0.015"
+          above the final diameter using a lubricated, slightly dull insert. Then I used a higher
+          spindle speed and lower feed rate to refine the surface.
+        </p>
+        <p>
+          Final polishing was done with sequential passes of 120‑grit and 220‑grit sandpaper.
+        </p>
+      </section>
+
+      <!-- FINAL RESULT -->
+      <section class="case-section">
+        <h3>Final Assembly</h3>
+        <p>
+          After adding a couple decorative slots, cleaning and assembling the components, the pen operated smoothly and reliably.
+          The final step was engraving my friend’s initials — a personal touch to finish a fully
+          custom machined gift.
+        </p>
+        <div class="figure-placeholder">
+          <img src="images/pen/final1.jpg" alt="Final assembled pen">          
+        </div>
+        <div class="figure-placeholder flex-row">
+          <img src="images/pen/final2.jpg" alt="Final assembled pen">          
+          <img src="images/pen/final3.jpg" alt="Final assembled pen">
+        </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Diego — Mechanics Portfolio</p>
+  </footer>
+
+</body>
+</html>
